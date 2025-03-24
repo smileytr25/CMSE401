@@ -1,7 +1,7 @@
 all: gol 
 
-CC:=gcc
-EXT:=c
+CC:=nvcc
+EXT:=cu
 FLAGS:=-lm -lpng16
 
 gameoflife.o: gameoflife.$(EXT)
