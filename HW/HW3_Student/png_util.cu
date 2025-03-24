@@ -107,6 +107,7 @@ void write_png_file(char *filename, unsigned char *img, image_size_t img_size) {
 
   png_set_IHDR(
     png,
+
     info,
     img_size.width, img_size.height,
     8,
