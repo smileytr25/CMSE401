@@ -1,28 +1,31 @@
-all: revGOL gol 
+all: revGOL gol
 
-CC:=gcc
-EXT:=c
-FLAGS:= -lm -lpng
+# Compiler settings
+GCC := gcc
+MPICC := mpicc
+EXT := c
+FLAGS := -lm -lpng
 
+# Object files
 reverseGOL.o: reverseGOL.$(EXT)
-	$(CC) $(FLAGS) -c reverseGOL.$(EXT) 
+	$(GCC) $(FLAGS) -c reverseGOL.$(EXT)
 
 png_util.o: png_util.c
-	$(CC) $(FLAGS) -c png_util.c
+	$(GCC) $(FLAGS) -c png_util.c
 
 revGOL: reverseGOL.o png_util.o
-	$(CC) $(FLAGS) -o revGOL reverseGOL.o png_util.o
+	$(GCC) $(FLAGS) -o revGOL reverseGOL.o png_util.o
 
 gameoflife.o: gameoflife.$(EXT)
-	$(CC) $(FLAGS) -c gameoflife.$(EXT) 
+	$(MPICC) $(FLAGS) -c gameoflife.$(EXT)
 
 gol: gameoflife.o png_util.o
-	$(CC) $(FLAGS) -o gol gameoflife.o png_util.o
+	$(MPICC) $(FLAGS) -o gol gameoflife.o png_util.o
 
-test: revGOL data.txt
-	./revGOL data.txt
+test: revGOL cmse2.txt
+	./revGOL cmse2.txt
 
 clean:
-	rm *.o
-	rm gol 
-	rm revGOL 
+	rm -f *.o
+	rm -f gol revGOL
+

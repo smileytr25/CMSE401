@@ -1,0 +1,15 @@
+#!/bin/bash
+#SBATCH --job-name=revGOL_mpi
+#SBATCH --output=revGOL_mpi.out
+#SBATCH --error=revGOL_mpi.err
+#SBATCH --nodes=1
+#SBATCH --ntasks=50
+#SBATCH --cpus-per-task=1
+#SBATCH --time=00:30:00          # Adjust based on step 2 runtime
+#SBATCH --mem=100G               # 2GB × 50 cores
+
+echo "Running on $SLURM_NTASKS MPI tasks"
+
+mpirun ./revGOL_mpi cmse2.txt
+
+
